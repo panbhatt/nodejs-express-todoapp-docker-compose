@@ -1,0 +1,17 @@
+version: "3"
+services: 
+  web:
+    build: . 
+    command: npm start
+    ports:
+      - 3001:3000
+    depends_on:
+      - postgress
+    environment:
+      DATABASE_URL: postgres://todoapp@postgress/todos
+  
+  postgress:
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: todoapp
+      POSTGRES_DB: todos
